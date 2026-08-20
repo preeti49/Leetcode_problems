@@ -1,34 +1,32 @@
+import heapq
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
 class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        if not matrix or not matrix[0]:
-            return []
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap = []
         
-        res = []
-        top, bottom = 0, len(matrix) - 1
-        left, right = 0, len(matrix[0]) - 1
+        # Push the head of each non-empty list into the min-heap
+        # Include list index (i) to handle tie-breaking for equal node values
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
         
-        while top <= bottom and left <= right:
-           
-            for c in range(left, right + 1):
-                res.append(matrix[top][c])
-            top += 1
+        dummy = ListNode(0)
+        curr = dummy
+        
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            curr.next = node
+            curr = curr.next
             
-          
-            for r in range(top, bottom + 1):
-                res.append(matrix[r][right])
-            right -= 1
-            
-           
-            if top <= bottom:
-               
-                for c in range(right, left - 1, -1):
-                    res.append(matrix[bottom][c])
-                bottom -= 1
+            # If the popped node has a next node, push it to the heap
+            if node.next:
+                heapq.heappush(heap, (node.next.val, i, node.next))
                 
-            if left <= right:
-                
-                for r in range(bottom, top - 1, -1):
-                    res.append(matrix[r][left])
-                left += 1
-                
-        return res
+        return dummy.next
+        
