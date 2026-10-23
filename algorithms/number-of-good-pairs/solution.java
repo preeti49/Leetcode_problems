@@ -1,17 +1,14 @@
 class Solution {
-    public int maximumWealth(int[][] accounts) {
-        int max = 0;
-        for (int i =0 ;i<accounts.length;i++) {
-            int sum =0;
-            for (int j=0;j<(accounts[0]).length;j++) {
-                sum =sum+accounts[i][j];
-
+    public int numIdenticalPairs(int[] nums) {
+        int num = 0;
+        for (int i = 0;i<nums.length;i++) {
+            for (int j = 0;j<nums.length;j++) {
+                if ((nums[i]==nums[j]) && (i<j)) {
+                    num = num+1;
+                }
             }
-            if (sum>max) {
-                max=sum;
-            }
-      
         }
-          return max;
+        return num;
+        
     }
 }
