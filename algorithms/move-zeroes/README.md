@@ -1,4 +1,4 @@
-# Find the Pivot Integer
+# Move Zeroes
 
 **Difficulty:** Easy
 
