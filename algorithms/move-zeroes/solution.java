@@ -1,16 +1,15 @@
 class Solution {
-    public int pivotInteger(int n) {
-        int totalSum = n * (n + 1) / 2;
-        int leftSum = 0;
+    public void moveZeroes(int[] nums) {
+        int i = 0; 
         
-        for (int i = 1; i <= n; i++) {
-            leftSum += i;
-            
-            if (leftSum == totalSum - leftSum + i) {
-                return i;
+        for (int j = 0; j < nums.length; j++) {
+           
+            if (nums[j] != 0) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
             }
         }
-        
-        return -1;
     }
 }
