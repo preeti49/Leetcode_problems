@@ -1,30 +1,12 @@
-import java.util.TreeSet;
-
 class Solution {
-    public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
-        if (indexDiff <= 0 || valueDiff < 0) return false;
-        
-        TreeSet<Long> set = new TreeSet<>();
-        
-        for (int i = 0; i < nums.length; i++) {
-            long current = nums[i];
-            
-            
-            Long floor = set.ceiling(current - valueDiff);
-            
-          
-            if (floor != null && floor <= current + valueDiff) {
-                return true;
-            }
-            
-            set.add(current);
-            
-           
-            if (i >= indexDiff) {
-                set.remove((long) nums[i - indexDiff]);
-            }
+    public int missingNumber(int[] nums) {
+        int sum = 0;
+        int n = nums.length;
+        int real_sum = ((n*(n+1))/2);
+        for (int x : nums) {
+            sum = sum+x;
         }
+        return (real_sum-sum);
         
-        return false;
     }
 }
