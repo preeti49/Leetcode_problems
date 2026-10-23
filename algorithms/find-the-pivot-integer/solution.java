@@ -1,12 +1,16 @@
 class Solution {
-    public int missingNumber(int[] nums) {
-        int sum = 0;
-        int n = nums.length;
-        int real_sum = ((n*(n+1))/2);
-        for (int x : nums) {
-            sum = sum+x;
-        }
-        return (real_sum-sum);
+    public int pivotInteger(int n) {
+        int totalSum = n * (n + 1) / 2;
+        int leftSum = 0;
         
+        for (int i = 1; i <= n; i++) {
+            leftSum += i;
+            
+            if (leftSum == totalSum - leftSum + i) {
+                return i;
+            }
+        }
+        
+        return -1;
     }
 }
