@@ -1,12 +1,17 @@
 class Solution {
-    public int mostWordsFound(String[] sentences) {
-        int len1 = 0;
-        for (int i = 0; i < sentences.length; i++) {
-            int wordCount = sentences[i].split(" ").length;
-            if (wordCount > len1) {
-                len1 = wordCount;
+    public int maximumWealth(int[][] accounts) {
+        int max = 0;
+        for (int i =0 ;i<accounts.length;i++) {
+            int sum =0;
+            for (int j=0;j<(accounts[0]).length;j++) {
+                sum =sum+accounts[i][j];
+
             }
+            if (sum>max) {
+                max=sum;
+            }
+      
         }
-        return len1;
+          return max;
     }
 }
