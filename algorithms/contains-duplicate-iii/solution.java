@@ -1,14 +1,30 @@
+import java.util.TreeSet;
+
 class Solution {
-    public int numIdenticalPairs(int[] nums) {
-        int num = 0;
-        for (int i = 0;i<nums.length;i++) {
-            for (int j = 0;j<nums.length;j++) {
-                if ((nums[i]==nums[j]) && (i<j)) {
-                    num = num+1;
-                }
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
+        if (indexDiff <= 0 || valueDiff < 0) return false;
+        
+        TreeSet<Long> set = new TreeSet<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            long current = nums[i];
+            
+            
+            Long floor = set.ceiling(current - valueDiff);
+            
+          
+            if (floor != null && floor <= current + valueDiff) {
+                return true;
+            }
+            
+            set.add(current);
+            
+           
+            if (i >= indexDiff) {
+                set.remove((long) nums[i - indexDiff]);
             }
         }
-        return num;
         
+        return false;
     }
 }
