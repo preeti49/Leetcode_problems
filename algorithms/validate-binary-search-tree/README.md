@@ -1,6 +1,6 @@
-# Unique Binary Search Trees
+# Validate Binary Search Tree
 
-**Difficulty:** Medium
+**Difficulty:** Unknown
 
 **Language:** Java
 
