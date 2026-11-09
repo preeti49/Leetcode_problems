@@ -1,12 +1,15 @@
 class Solution {
-    public int mostWordsFound(String[] sentences) {
-        int len1 = 0;
-        for (int i = 0; i < sentences.length; i++) {
-            int wordCount = sentences[i].split(" ").length;
-            if (wordCount > len1) {
-                len1 = wordCount;
+    public int minMoves(int[] nums) {
+        int min = nums[0];
+        int sum = 0;
+        
+        for (int num : nums) {
+            sum += num;
+            if (num < min) {
+                min = num;
             }
         }
-        return len1;
+        
+        return sum - nums.length * min;
     }
 }
