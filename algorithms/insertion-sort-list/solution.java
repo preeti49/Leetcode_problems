@@ -1,13 +1,29 @@
 class Solution {
-    public int mostWordsFound(String[] sentences) {
-        int max = 0;
-        for (String s : sentences) {
-            if ((s.split(" ")).length>max) {
-                max = (s.split(" ")).length;
-             }
-
-            } 
-            return max;    
+    public ListNode insertionSortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
         
+        ListNode dummy = new ListNode(0);
+        ListNode curr = head; 
+        
+        while (curr != null) {
+            ListNode prev = dummy;
+            
+            
+            while (prev.next != null && prev.next.val < curr.val) {
+                prev = prev.next;
+            }
+         
+            ListNode nextTemp = curr.next;
+            
+           
+            curr.next = prev.next;
+            prev.next = curr;
+            
+            curr = nextTemp;
+        }
+        
+        return dummy.next;
     }
 }
