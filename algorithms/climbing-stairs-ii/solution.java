@@ -1,29 +1,32 @@
 class Solution {
-    public ListNode insertionSortList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
+    public int climbStairs(int n, int[] costs) {
+       
+        long[] dp = new long[n + 1];
         
-        ListNode dummy = new ListNode(0);
-        ListNode curr = head; 
         
-        while (curr != null) {
-            ListNode prev = dummy;
-            
-            
-            while (prev.next != null && prev.next.val < curr.val) {
-                prev = prev.next;
-            }
-         
-            ListNode nextTemp = curr.next;
+        dp[0] = 0;
+        
+       
+        for (int j = 1; j <= n; j++) {
+            long minCost = Long.MAX_VALUE;
             
            
-            curr.next = prev.next;
-            prev.next = curr;
-            
-            curr = nextTemp;
+            for (int k = 1; k <= 3; k++) {
+                int i = j - k;
+                
+                
+                if (i >= 0) {
+               
+                    long cost = dp[i] + costs[j - 1] + (long)(j - i) * (j - i);
+                    
+                    
+                    minCost = Math.min(minCost, cost);
+                }
+            }
+         
+            dp[j] = minCost;
         }
-        
-        return dummy.next;
+ 
+        return (int) dp[n];
     }
 }
